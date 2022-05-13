@@ -1,0 +1,72 @@
+
+<h2>Validaciones reactivas</h2>
+<hr>
+
+<div class="row" >
+    <div class="col">
+        <form [formGroup]="miFormulario" (ngSubmit)="submit()">
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label"> Nombre</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="Nombre del usuario..." formControlName="nombre">
+                    <span class="form-text text-danger" *ngIf="campoNoValido('nombre')">Debe de ser en formato Nombre/Apellido</span>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" placeholder="Correo electrónico..." formControlName="email">
+                    <span class="form-text text-danger" *ngIf="erroresMail()">{{errorMsg}}</span>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Username</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="Nombre de usuario..." formControlName="username">
+                    <span class="form-text text-danger" *ngIf="campoNoValido('username')">El username es obligatorio y no puede ser Nick</span>
+
+                </div>
+            </div>
+
+
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Password</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" placeholder="Password..." formControlName="password">
+                </div>
+            </div>
+
+
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Confirmar password</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" placeholder="Password..." formControlName="password2">
+                </div>
+            </div>
+
+
+        <button class="btn btn-primary float-end" type="submit" [disabled]="miFormulario.pending">
+            Crear
+        </button>
+        </form>
+    </div>
+</div>
+
+
+<h2>{{miFormulario.valid}}</h2>
+<hr>
+<pre>{{miFormulario.controls['nombre'].errors | json}}</pre>
+<hr>
+<pre>{{miFormulario.controls['email'].errors | json}}</pre>
+<hr>
+<pre>{{miFormulario.controls['username'].errors | json}}</pre>
+<hr>
+<pre>{{miFormulario.controls['password'].errors | json}}</pre>
+<hr>
+<pre>{{miFormulario.controls['password2'].errors | json}}</pre>
